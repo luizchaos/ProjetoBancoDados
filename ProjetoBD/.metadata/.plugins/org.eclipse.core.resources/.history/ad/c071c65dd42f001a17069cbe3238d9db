@@ -1,0 +1,14 @@
+package Classes;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+public class Cidade {
+	@Id
+    @GeneratedValue
+    private Long id;
+	
+	private Estado estado;
+	
+	private String descricao;
+}

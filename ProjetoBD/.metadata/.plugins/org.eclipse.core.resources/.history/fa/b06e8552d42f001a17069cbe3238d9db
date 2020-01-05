@@ -1,0 +1,29 @@
+package Classes;
+
+import javax.persistence.*;
+
+@Entity
+public class Estado {
+	@Id
+    @GeneratedValue
+    private Long id;
+	
+	private String Descricao;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return Descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		Descricao = descricao;
+	}
+	
+}

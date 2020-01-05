@@ -1,0 +1,23 @@
+package Controller;
+
+import javax.persistence.EntityManager;
+
+import Classes.Estado;
+
+public class EstadoController {
+	
+	public Estado inserir(EntityManager entityManager ,Estado obj) {
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(obj);
+		entityManager.getTransaction().commit();
+		
+		return obj;
+	}
+	
+	public void remover(EntityManager entityManager ,Estado obj) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(obj);
+		entityManager.getTransaction().commit();
+	}
+}

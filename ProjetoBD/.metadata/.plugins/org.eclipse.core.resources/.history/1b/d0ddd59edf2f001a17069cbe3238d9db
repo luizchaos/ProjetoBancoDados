@@ -1,0 +1,42 @@
+package Controller;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import Classes.Estado;
+
+public class EstadoController {
+	
+	public Estado inserir(EntityManager entityManager ,Estado obj) {
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(obj);
+		entityManager.getTransaction().commit();
+		
+		return obj;
+	}
+	
+	public void remover(EntityManager entityManager ,Estado obj) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(obj);
+		entityManager.getTransaction().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Estado> listar(EntityManager entityManager){
+		entityManager.getTransaction().begin();
+		Query q = entityManager.createQuery("From Estado");
+		
+		List<Estado> resultList = q.getResultList();
+		
+		return resultList;
+	}
+	
+	public Estado obter(EntityManager entityManager, Integer id) {
+		entityManager.getTransaction().begin();
+		Estado obj = entityManager.find(Estado.class, id);
+		return obj;
+	}
+}

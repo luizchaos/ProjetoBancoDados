@@ -1,0 +1,253 @@
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import Classes.*;
+import Controller.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		//Iniciando banco
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Projeto");
+		EntityManager entityManager = factory.createEntityManager();
+		
+		//Obtendo controllers
+		EstadoController estadoController = new EstadoController();
+		CidadeController cidadeController = new CidadeController();
+		EnderecoController enderecoController = new EnderecoController();
+		ClienteController clienteController = new ClienteController();
+		VendaController vendaController = new VendaController();
+		LancheController lancheController = new LancheController();
+		Venda_LancheController venda_LancheController = new Venda_LancheController();
+		
+		//###############################
+		//Atividade Semana 5			#
+		//###############################
+		
+		//Insercao em todas as tabelas
+		Estado estado1 = new Estado("Pernambuco");
+		Estado estado2 = new Estado("Paraiba");
+		
+		estado1 = estadoController.inserir(entityManager, estado1);
+		estado2 = estadoController.inserir(entityManager, estado2);
+		
+		Cidade cidade1 = new Cidade(estado1, "Recife");
+		Cidade cidade2 = new Cidade(estado1, "Olinda");
+		
+		Cidade cidade3 = new Cidade(estado2, "Joao Pessoa");
+		Cidade cidade4 = new Cidade(estado2, "Campina Grande");
+		
+		cidade1 = cidadeController.inserir(entityManager, cidade1);
+		cidade2 = cidadeController.inserir(entityManager, cidade2);
+		cidade3 = cidadeController.inserir(entityManager, cidade3);
+		cidade4 = cidadeController.inserir(entityManager, cidade4);
+		
+		Endereco endereco1 = new Endereco(cidade1, "Rua Real Pompeia", "432");
+		Endereco endereco2 = new Endereco(cidade2, "Rua Leopoldo da Silva", "987");
+		Endereco endereco3 = new Endereco(cidade3, "Rua Campos Sales", "2312");
+		Endereco endereco4 = new Endereco(cidade3, "Rua Regis de Sa", "543");
+		
+		endereco1 = enderecoController.inserir(entityManager, endereco1);
+		endereco2 = enderecoController.inserir(entityManager, endereco2);
+		endereco3 = enderecoController.inserir(entityManager, endereco3);
+		endereco4 = enderecoController.inserir(entityManager, endereco4);
+		
+		Cliente cliente1 = new Cliente("Luiz", "11111111111", endereco1, "luiz@mail.com", "88888888");
+		Cliente cliente2 = new Cliente("Henrique", "22111111122", endereco1, "henrique@mail.com", "99888888");
+		Cliente cliente3 = new Cliente("Maria", "23331441125", endereco1, "maria@mail.com", "99777888");
+		Cliente cliente4 = new Cliente("Severino", "98731441154", endereco1, "severino@mail.com", "99375878");
+		
+		cliente1 = clienteController.inserir(entityManager, cliente1);
+		cliente2 = clienteController.inserir(entityManager, cliente2);
+		cliente3 = clienteController.inserir(entityManager, cliente3);
+		cliente4 = clienteController.inserir(entityManager, cliente4);
+		
+		Venda venda1 = new Venda(cliente1, 121221);
+		Venda venda2 = new Venda(cliente2, 534534);
+		Venda venda3 = new Venda(cliente3, 364565);
+		Venda venda4 = new Venda(cliente4, 231278);
+		
+		venda1 = vendaController.inserir(entityManager, venda1);
+		venda2 = vendaController.inserir(entityManager, venda2);
+		venda3 = vendaController.inserir(entityManager, venda3);
+		venda4 = vendaController.inserir(entityManager, venda4);
+		
+		Lanche lanche1 = new Lanche("X-Burguer", 15.00);
+		Lanche lanche2 = new Lanche("X-Bacon", 17.00);
+		Lanche lanche3 = new Lanche("X-Egg", 16.00);
+		Lanche lanche4 = new Lanche("X-Tudo", 20.00);
+		
+		lanche1 = lancheController.inserir(entityManager, lanche1);
+		lanche2 = lancheController.inserir(entityManager, lanche2);
+		lanche3 = lancheController.inserir(entityManager, lanche3);
+		lanche4 = lancheController.inserir(entityManager, lanche4);
+		
+		Venda_Lanche venda_lanche1 = new Venda_Lanche(lanche1, venda1);
+		Venda_Lanche venda_lanche2 = new Venda_Lanche(lanche2, venda2);
+		Venda_Lanche venda_lanche3 = new Venda_Lanche(lanche3, venda3);
+		Venda_Lanche venda_lanche4 = new Venda_Lanche(lanche4, venda4);
+		
+		Venda_Lanche venda_lanche5 = new Venda_Lanche(lanche4, venda1);
+		Venda_Lanche venda_lanche6 = new Venda_Lanche(lanche3, venda2);
+		Venda_Lanche venda_lanche7 = new Venda_Lanche(lanche2, venda3);
+		Venda_Lanche venda_lanche8 = new Venda_Lanche(lanche1, venda4);
+		
+		venda_lanche1 = venda_LancheController.inserir(entityManager, venda_lanche1);
+		venda_lanche2 = venda_LancheController.inserir(entityManager, venda_lanche2);
+		venda_lanche3 = venda_LancheController.inserir(entityManager, venda_lanche3);
+		venda_lanche4 = venda_LancheController.inserir(entityManager, venda_lanche4);
+		venda_lanche5 = venda_LancheController.inserir(entityManager, venda_lanche5);
+		venda_lanche6 = venda_LancheController.inserir(entityManager, venda_lanche6);
+		venda_lanche7 = venda_LancheController.inserir(entityManager, venda_lanche7);
+		venda_lanche8 = venda_LancheController.inserir(entityManager, venda_lanche8);
+		
+		//###############################
+		//Atividade Semana 6			#
+		//###############################
+		//5 Inserts em cada tabela
+		Estado semana6estado1 = new Estado("Sao Paulo");
+		Estado semana6estado2 = new Estado("Alagoas");
+		Estado semana6estado3 = new Estado("Acre");
+		Estado semana6estado4 = new Estado("Santa Catarina");
+		Estado semana6estado5 = new Estado("Rio Grande do Sul");
+		
+		semana6estado1 = estadoController.inserir(entityManager, semana6estado1);
+		semana6estado2 = estadoController.inserir(entityManager, semana6estado2);
+		semana6estado3 = estadoController.inserir(entityManager, semana6estado3);
+		semana6estado4 = estadoController.inserir(entityManager, semana6estado4);
+		semana6estado5 = estadoController.inserir(entityManager, semana6estado5);
+		
+		Cidade semana6cidade1 = new Cidade(semana6estado1, "Sao Paulo");
+		Cidade semana6cidade2 = new Cidade(semana6estado2, "Maceio");
+		Cidade semana6cidade3 = new Cidade(semana6estado3, "Rio Branco");
+		Cidade semana6cidade4 = new Cidade(semana6estado4, "Florianopolis");
+		Cidade semana6cidade5 = new Cidade(semana6estado5, "Porto Alegre");
+		
+		semana6cidade1 = cidadeController.inserir(entityManager, semana6cidade1);
+		semana6cidade2 = cidadeController.inserir(entityManager, semana6cidade2);
+		semana6cidade3 = cidadeController.inserir(entityManager, semana6cidade3);
+		semana6cidade4 = cidadeController.inserir(entityManager, semana6cidade4);
+		semana6cidade5 = cidadeController.inserir(entityManager, semana6cidade5);
+		
+		Endereco semana6endereco1 = new Endereco(semana6cidade1, "Rua 1", "120");
+		Endereco semana6endereco2 = new Endereco(semana6cidade2, "Rua 2", "121");
+		Endereco semana6endereco3 = new Endereco(semana6cidade3, "Rua 3", "123");
+		Endereco semana6endereco4 = new Endereco(semana6cidade4, "Rua 4", "124");
+		Endereco semana6endereco5 = new Endereco(semana6cidade5, "Rua 5", "125");
+		
+		semana6endereco1 = enderecoController.inserir(entityManager, semana6endereco1);
+		semana6endereco2 = enderecoController.inserir(entityManager, semana6endereco2);
+		semana6endereco3 = enderecoController.inserir(entityManager, semana6endereco3);
+		semana6endereco4 = enderecoController.inserir(entityManager, semana6endereco4);
+		semana6endereco5 = enderecoController.inserir(entityManager, semana6endereco5);
+		
+		Cliente semana6cliente1 = new Cliente("A", "2222", semana6endereco1, "A@mail.com", "999");
+		Cliente semana6cliente2 = new Cliente("B", "3333", semana6endereco2, "B@mail.com", "888");
+		Cliente semana6cliente3 = new Cliente("C", "4444", semana6endereco3, "C@mail.com", "777");
+		Cliente semana6cliente4 = new Cliente("D", "5555", semana6endereco4, "D@mail.com", "666");
+		Cliente semana6cliente5 = new Cliente("E", "6666", semana6endereco5, "E@mail.com", "555");
+		
+		semana6cliente1 = clienteController.inserir(entityManager, semana6cliente1);
+		semana6cliente2 = clienteController.inserir(entityManager, semana6cliente2);
+		semana6cliente3 = clienteController.inserir(entityManager, semana6cliente3);
+		semana6cliente4 = clienteController.inserir(entityManager, semana6cliente4);
+		semana6cliente5 = clienteController.inserir(entityManager, semana6cliente5);
+		
+		Venda semana6venda1 = new Venda(semana6cliente1, 1300);
+		Venda semana6venda2 = new Venda(semana6cliente2, 1301);
+		Venda semana6venda3 = new Venda(semana6cliente3, 1302);
+		Venda semana6venda4 = new Venda(semana6cliente4, 1303);
+		Venda semana6venda5 = new Venda(semana6cliente5, 1304);
+		
+		semana6venda1 = vendaController.inserir(entityManager, semana6venda1);
+		semana6venda2 = vendaController.inserir(entityManager, semana6venda2);
+		semana6venda3 = vendaController.inserir(entityManager, semana6venda3);
+		semana6venda4 = vendaController.inserir(entityManager, semana6venda4);
+		semana6venda5 = vendaController.inserir(entityManager, semana6venda5);
+		
+		Lanche semana6lanche1 = new Lanche("X-1", 20.00);
+		Lanche semana6lanche2 = new Lanche("X-2", 21.00);
+		Lanche semana6lanche3 = new Lanche("X-3", 22.00);
+		Lanche semana6lanche4 = new Lanche("X-4", 23.00);
+		Lanche semana6lanche5 = new Lanche("X-5", 24.00);
+		
+		semana6lanche1 = lancheController.inserir(entityManager, semana6lanche1);
+		semana6lanche2 = lancheController.inserir(entityManager, semana6lanche2);
+		semana6lanche3 = lancheController.inserir(entityManager, semana6lanche3);
+		semana6lanche4 = lancheController.inserir(entityManager, semana6lanche4);
+		semana6lanche5 = lancheController.inserir(entityManager, semana6lanche5);
+		
+		Venda_Lanche semana6venda_lanche1 = new Venda_Lanche(semana6lanche1, semana6venda1);
+		Venda_Lanche semana6venda_lanche2 = new Venda_Lanche(semana6lanche2, semana6venda2);
+		Venda_Lanche semana6venda_lanche3 = new Venda_Lanche(semana6lanche3, semana6venda3);
+		Venda_Lanche semana6venda_lanche4 = new Venda_Lanche(semana6lanche4, semana6venda4);
+		Venda_Lanche semana6venda_lanche5 = new Venda_Lanche(semana6lanche5, semana6venda5);
+		
+		semana6venda_lanche1 = venda_LancheController.inserir(entityManager, semana6venda_lanche1);
+		semana6venda_lanche2 = venda_LancheController.inserir(entityManager, semana6venda_lanche2);
+		semana6venda_lanche3 = venda_LancheController.inserir(entityManager, semana6venda_lanche3);
+		semana6venda_lanche4 = venda_LancheController.inserir(entityManager, semana6venda_lanche4);
+		semana6venda_lanche5 = venda_LancheController.inserir(entityManager, semana6venda_lanche5);
+		
+		//alterar registros
+		semana6estado1.setDescricao("Sao Paulo-SP");
+		semana6estado2.setDescricao("Sao Paulo-AL");
+		semana6estado3.setDescricao("Acre-AC");
+		
+		semana6estado1 = estadoController.atualizar(entityManager, semana6estado1);
+		semana6estado2 = estadoController.atualizar(entityManager, semana6estado2);
+		semana6estado3 = estadoController.atualizar(entityManager, semana6estado3);
+		
+		semana6lanche1.setDescricao("X-11");
+		semana6lanche2.setDescricao("X-22");
+		semana6lanche3.setDescricao("X-33");
+		
+		semana6lanche1 = lancheController.atualizar(entityManager, semana6lanche1);
+		semana6lanche2 = lancheController.atualizar(entityManager, semana6lanche2);
+		semana6lanche3 = lancheController.atualizar(entityManager, semana6lanche3);
+		
+		semana6endereco1.setRua("Rua nova 1");
+		semana6endereco2.setRua("Rua nova 2");
+		semana6endereco3.setRua("Rua nova 3");
+		
+		semana6endereco1 = enderecoController.atualizar(entityManager, semana6endereco1);
+		semana6endereco2 = enderecoController.atualizar(entityManager, semana6endereco2);
+		semana6endereco3 = enderecoController.atualizar(entityManager, semana6endereco3);
+		
+		//exclusao
+		venda_LancheController.remover(entityManager, semana6venda_lanche5);
+		lancheController.remover(entityManager, semana6lanche5);
+		vendaController.remover(entityManager, semana6venda5);
+		clienteController.remover(entityManager, semana6cliente5);
+		enderecoController.remover(entityManager, semana6endereco5);
+		cidadeController.remover(entityManager, semana6cidade5);
+		estadoController.remover(entityManager, semana6estado5);
+		
+		//###############################
+		//Atividade Semana 7			#
+		//###############################
+		
+		//Relatorio 1
+		//Relatorio de clientes e sua localizacao(inner com estado, cidade)
+		
+		List<Cliente> listCliente = clienteController.listar(entityManager); 
+		System.out.println("Relatorio de Clientes e sua Localizacao!");
+		System.out.println("");
+		for(Cliente c : listCliente) {
+			System.out.print(c.getNome()+",");
+			System.out.print(c.getCpf()+",");
+			System.out.print(c.getTelefone()+",");
+			System.out.print(c.getEmail()+",");
+			System.out.print(c.getEndereco().getRua()+",");
+			System.out.print(c.getEndereco().getNumero()+",");
+			System.out.print(c.getEndereco().getCidade().getDescricao()+",");
+			System.out.print(c.getEndereco().getCidade().getEstado().getDescricao()+"");
+			System.out.println("");
+		}
+	}
+
+}

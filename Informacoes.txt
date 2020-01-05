@@ -1,0 +1,10 @@
+Informações sobre o trabalho
+
+Arquivo docker-compose.yml: arquivo do docker necessario para levantar o banco de dados.
+Arquivo Projeto.sql: arquivo sql para criação do banco.
+Pasta ProjetoBD: workspace do eclipse onde esta localizado o projeto.
+
+Obs.: Caso as bibliotecas do projeto não carreguem, elas estão localizadas dentro na pasta lib dentro do projeto.
+
+Aluno: Luiz Henrique Teixeira Carvalho
+Polo: Carpina

@@ -1,0 +1,14 @@
+package Classes;
+
+import javax.persistence.*;
+
+@SuppressWarnings("deprecation")
+@Entity
+public class Usuario {
+	@Id
+    @GeneratedValue
+    private Long id;
+
+    private String descricao;
+    private boolean finalizado;
+}

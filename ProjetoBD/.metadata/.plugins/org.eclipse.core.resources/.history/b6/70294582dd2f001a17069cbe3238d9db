@@ -1,0 +1,77 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import Classes.*;
+import Controller.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		//Iniciando banco
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Projeto");
+		EntityManager entityManager = factory.createEntityManager();
+		
+		//Obtendo controllers
+		EstadoController estadoController = new EstadoController();
+		CidadeController cidadeController = new CidadeController();
+		EnderecoController enderecoController = new EnderecoController();
+		ClienteController clienteController = new ClienteController();
+		VendaController vendaController = new VendaController();
+		LancheController lancheController = new LancheController();
+		Venda_LancheController venda_LancheController = new Venda_LancheController();
+		
+		//Carga Inicial
+		Estado estado1 = new Estado("Pernambuco");
+		Estado estado2 = new Estado("Paraiba");
+		
+		estado1 = estadoController.inserir(entityManager, estado1);
+		estado2 = estadoController.inserir(entityManager, estado2);
+		
+		Cidade cidade1 = new Cidade(estado1, "Recife");
+		Cidade cidade2 = new Cidade(estado1, "Olinda");
+		
+		Cidade cidade3 = new Cidade(estado2, "Joao Pessoa");
+		Cidade cidade4 = new Cidade(estado2, "Campina Grande");
+		
+		cidade1 = cidadeController.inserir(entityManager, cidade1);
+		cidade2 = cidadeController.inserir(entityManager, cidade2);
+		cidade3 = cidadeController.inserir(entityManager, cidade3);
+		cidade4 = cidadeController.inserir(entityManager, cidade4);
+		
+		Endereco endereco1 = new Endereco(cidade1, "Rua Real Pompeia", "432");
+		Endereco endereco2 = new Endereco(cidade2, "Rua Leopoldo da Silva", "987");
+		Endereco endereco3 = new Endereco(cidade3, "Rua Campos Sales", "2312");
+		Endereco endereco4 = new Endereco(cidade3, "Rua Regis de Sa", "543");
+		
+		endereco1 = enderecoController.inserir(entityManager, endereco1);
+		endereco2 = enderecoController.inserir(entityManager, endereco2);
+		endereco3 = enderecoController.inserir(entityManager, endereco3);
+		endereco4 = enderecoController.inserir(entityManager, endereco4);
+		
+		Cliente cliente1 = new Cliente("Luiz", "11111111111", endereco1, "luiz@mail.com", "88888888");
+		Cliente cliente2 = new Cliente("Henrique", "22111111122", endereco1, "henrique@mail.com", "99888888");
+		Cliente cliente3 = new Cliente("Maria", "23331441125", endereco1, "maria@mail.com", "99777888");
+		Cliente cliente4 = new Cliente("Severino", "98731441154", endereco1, "severino@mail.com", "99375878");
+		
+		cliente1 = clienteController.inserir(entityManager, cliente1);
+		cliente2 = clienteController.inserir(entityManager, cliente2);
+		cliente3 = clienteController.inserir(entityManager, cliente3);
+		cliente4 = clienteController.inserir(entityManager, cliente4);
+		
+		Venda venda1 = new Venda(cliente1, 121221);
+		Venda venda2 = new Venda(cliente2, 534534);
+		Venda venda3 = new Venda(cliente3, 364565);
+		Venda venda4 = new Venda(cliente4, 231278);
+		
+		venda1 = vendaController.inserir(entityManager, venda1);
+		venda2 = vendaController.inserir(entityManager, venda2);
+		venda3 = vendaController.inserir(entityManager, venda3);
+		venda4 = vendaController.inserir(entityManager, venda4);
+		
+		Lanche lanche1 = new Lanche("X-Burguer", 15.00);
+		Lanche lanche2 = new Lanche("X-Bacon", 17.00);
+	}
+
+}

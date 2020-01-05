@@ -1,0 +1,25 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import Classes.Usuario;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Projeto");
+		EntityManager entityManager = factory.createEntityManager();
+		
+		entityManager.getTransaction().begin();
+		
+		Usuario us = new Usuario();
+		
+		us.setDescricao("teste");
+		entityManager.persist(us);
+		entityManager.getTransaction().commit();
+		
+		System.out.println(us.getId());
+	}
+
+}

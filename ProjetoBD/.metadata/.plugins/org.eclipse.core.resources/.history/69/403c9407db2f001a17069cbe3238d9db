@@ -1,0 +1,30 @@
+package Classes;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Venda_Lanche {
+	@Id
+    @GeneratedValue
+    private Long id;
+	
+	private Lanche lanche;
+	private Venda venda;
+	
+	public Lanche getLanche() {
+		return lanche;
+	}
+	public void setLanche(Lanche lanche) {
+		this.lanche = lanche;
+	}
+	public Venda getVenda() {
+		return venda;
+	}
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
+	
+	
+}

@@ -1,0 +1,41 @@
+package Classes;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Venda_Lanche {
+	@Id
+    @GeneratedValue
+    private Long id;
+	
+	@ManyToOne
+	private Lanche lanche;
+	
+	@ManyToOne
+	private Venda venda;
+	
+	public Venda_Lanche(Lanche lanche, Venda venda) {
+		super();
+		this.lanche = lanche;
+		this.venda = venda;
+	}
+	
+	public Lanche getLanche() {
+		return lanche;
+	}
+	public void setLanche(Lanche lanche) {
+		this.lanche = lanche;
+	}
+	public Venda getVenda() {
+		return venda;
+	}
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
+	
+	
+}
